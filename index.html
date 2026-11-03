@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AI Literacy Lab Assistant</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+    <div class="sparkle-field" aria-hidden="true">
+      <i class="spark sparkle-one"></i><i class="spark sparkle-two"></i><i class="spark sparkle-three"></i>
+      <i class="spark sparkle-four"></i><i class="spark sparkle-five"></i><i class="spark sparkle-six"></i>
+    </div>
+    <main class="app-shell">
+      <header class="hero">
+        <div class="brand-mark" aria-hidden="true">✦</div>
+        <div>
+          <p class="eyebrow">Generative AI Literacy &amp; Applications Lab</p>
+          <h1>Little Star Assistant</h1>
+          <p class="model"><span class="status-dot"></span>Private &amp; local · {{ model }}</p>
+        </div>
+      </header>
+
+      <section id="messages" class="messages" aria-live="polite" aria-label="Conversation">
+        <article class="message assistant-message">
+          <strong><span class="message-star" aria-hidden="true">✦</span> Little Star</strong>
+          <p>Hi! Ask me about generative AI concepts, applications, or your lab work.</p>
+        </article>
+      </section>
+
+      <p id="status" class="status" role="status"></p>
+      <form id="chat-form" class="composer">
+        <label class="sr-only" for="message-input">Your message</label>
+        <textarea id="message-input" name="message" rows="2" maxlength="12000"
+          placeholder="Ask a question…" required></textarea>
+        <button id="send-button" type="submit"><span>Send</span><span aria-hidden="true">✦</span></button>
+      </form>
+
+      <section class="document-manager" aria-labelledby="documents-title">
+        <div class="documents-heading">
+          <div>
+            <p class="eyebrow">Local files</p>
+            <h2 id="documents-title">Study library</h2>
+            <p>Stored and searched only in this project to answer your questions.</p>
+          </div>
+          <button id="refresh-documents" class="quiet-button" type="button">Refresh</button>
+        </div>
+        <form id="upload-form" class="upload-form">
+          <label class="upload-picker" for="document-input"><span aria-hidden="true">+</span> Choose a file</label>
+          <input id="document-input" name="document" type="file" accept=".pdf,.txt,.md,.docx,application/pdf,text/plain,text/markdown,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+          <span id="selected-file" class="selected-file">No file selected</span>
+          <button type="submit" class="upload-button">Upload</button>
+        </form>
+        <p class="file-help">PDF, TXT, Markdown, or DOCX · 10 MB maximum each</p>
+        <p id="document-status" class="document-status" role="status"></p>
+        <ul id="document-list" class="document-list" aria-live="polite"></ul>
+      </section>
+    </main>
+    <dialog id="document-preview" class="document-preview" aria-labelledby="preview-title">
+      <div class="preview-heading">
+        <h2 id="preview-title">Document preview</h2>
+        <button id="close-preview" class="quiet-button" type="button">Close</button>
+      </div>
+      <pre id="preview-content"></pre>
+    </dialog>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+  </body>
+</html>
